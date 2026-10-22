@@ -1,0 +1,8 @@
+name = "my-video-site"
+compatibility_date = "2026-01-01"
+pages_build_output_dir = "public"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "video_db"
+database_id = "b833b84c-b623-4d00-a99a-d73b35179541"  # 创建 D1 后替换此处

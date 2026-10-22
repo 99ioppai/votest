@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高清视频分享平台</title>
+    <link rel="stylesheet" href="/style.css">
+    <!-- HLS 播放器内核 -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 头部 -->
+        <header class="site-header">
+            <a href="/" class="logo">🎬 视频分享</a>
+        </header>
+
+        <!-- 主界面容器 -->
+        <main class="container" id="mainContainer">
+            <!-- 动态分类与标签栏 -->
+            <div class="filter-bar" id="filterBar">
+                <div class="filter-group">
+                    <span class="filter-label">分类：</span>
+                    <div id="categoryChips" style="display:flex; gap:8px; flex-wrap:wrap;"></div>
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label">标签：</span>
+                    <div id="tagChips" style="display:flex; gap:8px; flex-wrap:wrap;"></div>
+                </div>
+            </div>
+
+            <!-- 视频卡片瀑布流 -->
+            <div class="video-grid" id="videoGrid"></div>
+        </main>
+    </div>
+
+    <!-- 隐蔽后台管理模态框 (访客不可见，仅通过 #admin 或快捷键唤起) -->
+    <div class="modal" id="adminModal">
+        <div class="modal-content">
+            <h2 style="margin-bottom: 20px;">后台视频管理</h2>
+            <form id="videoForm">
+                <div class="form-group">
+                    <label>视频标题</label>
+                    <input type="text" id="titleInput" required placeholder="输入视频名称">
+                </div>
+                <div class="form-group">
+                    <label>分类</label>
+                    <input type="text" id="categoryInput" required value="默认分类" placeholder="例如：电影、教程">
+                </div>
+                <div class="form-group">
+                    <label>标签 (用空格或逗号分隔)</label>
+                    <input type="text" id="tagsInput" placeholder="例如：4k 高清 热门">
+                </div>
+                <div class="form-group">
+                    <label>封面图片地址 (R2 URL)</label>
+                    <input type="url" id="coverInput" required placeholder="https://...">
+                </div>
+                <div class="form-group">
+                    <label>播放地址 (.m3u8 链接)</label>
+                    <input type="url" id="m3u8Input" required placeholder="https://.../index.m3u8">
+                </div>
+                <button type="submit" class="btn">保存并添加视频</button>
+                <button type="button" class="btn btn-danger" id="closeAdminBtn" style="margin-left: 10px;">关闭后台</button>
+            </form>
+            <hr style="border: 0; border-top: 1px solid #222836; margin: 20px 0;">
+            <h3>现有视频列表</h3>
+            <table class="admin-table" id="adminTable">
+                <thead>
+                    <tr><th>ID</th><th>标题</th><th>分类</th><th>操作</th></tr>
+                </thead>
+                <tbody id="adminTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>
